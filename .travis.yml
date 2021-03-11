@@ -4,9 +4,12 @@ python:
 services:
   - docker
 
-before_script: pip install docker-compose
+install:
+  - pip install docker-compose
+
+before_script:
+  - docker-compose up --build -d
 
 script:
- - docker-compose up &
  - docker-compose run app sh -c "python manage.py test"
   
